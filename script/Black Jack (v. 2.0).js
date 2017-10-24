@@ -248,7 +248,7 @@ function stringsExecute() {
           },
           key : '2'
         },
-				str2 : {// Change coefficient which is used when player wins
+        str2 : {// Change coefficient which is used when player wins
           name : '3. Change win coefficient',
           context : changeProperety,
           addArgs : {
@@ -456,10 +456,19 @@ function stringsExecute() {
           },
           key : '2'
         },
-        str2 : {// Back one level
-          name : '3. Назад',
-          context : exit,
+        str2 : {// Change coefficient which is used when player wins
+          name : '3. Изменить коэффициент выигрыша',
+          context : changeProperety,
+          addArgs : {
+            properety : 'coef',
+            block :'coefficientList'
+          },
           key : '3'
+        },
+        str3 : {// Back one level
+          name : '4. Назад',
+          context : exit,
+          key : '4'
         }
       },
       menuHelp : {// Help menu
