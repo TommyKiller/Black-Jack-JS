@@ -3,104 +3,104 @@
 function stringsExecute() {
   const strings = {
     propereties : {
-      languageList : {
-        str0 : {// 0. English
+      languageList : [
+        {// 0. English
           name : '1. English',
           context : 'eng',
           key : '1'
         },
-        str1 : {// 2. Russian
+        {// 2. Russian
           name : '2. Русский',
           context : 'rus',
           key : '2'
         }
-      },
-      cashList : {
-        str0 : {
+      ],
+      cashList : [
+        {
           name : '1. 10000',
           context : 10000,
           key : '1'
         },
-        str1 : {
+        {
           name : '2. 25000',
           context : 25000,
           key : '2'
         },
-        str2 : {
+        {
           name : '3. 50000',
           context : 50000,
           key : '3'
         },
-        str3 : {
+        {
           name : '4. 100000',
           context : 100000,
           key : '4'
         }
-      },
-      betsList : {
-        str0 : {
+      ],
+      betsList : [
+        {
           name : '1. 1000',
           context : 1000,
           key : '1'
         },
-        str1 : {
+        {
           name : '2. 2000',
           context : 2000,
           key : '2'
         },
-        str2 : {
+        {
           name : '3. 5000',
           context : 5000,
           key : '3'
         },
-        str3 : {
+        {
           name : '4. 10000',
           context : 10000,
           key : '4'
         },
-        str4 : {
+        {
           name : '5. 20000',
           context : 20000,
           key : '5'
         },
-        str5 : {
+        {
           name : '6. 50000',
           context : 50000,
           key : '6'
         },
-        str6 : {
+        {
           name : '7. 75000',
           context : 75000,
           key : '7'
         },
-        str7 : {
+        {
           name : '8. 100000',
           context : 100000,
           key : '8'
         },
-        str8 : {
+        {
           name : '9. ',
           context : ' ',
           key : '9'
         }
-      },
-      coefficientList : {
-        str0 : {
+      ],
+      coefficientList : {[
+        {
           name : '1. 1.5',
           context : 1.5,
           key : '1'
         },
-        str1 : {
+        {
           name : '2. 2.0',
           context : 2.0,
           key : '2'
         },
-        str2 : {
+        {
           name : '3. 2.5',
           context : 2.5,
           key : '3'
         }
-      }
+      ]
     },
     'eng' : {
       game : {// Game
@@ -202,35 +202,35 @@ function stringsExecute() {
           name : 'If you have "blackjack" and croupier\'s opened card is Ace you can pick up the bank in the amount 1:1, or continue to play.\nWhen you wins you pick up the bank in amount 3:2.'
         }
       },
-      menuMain : {// Main menu
-        str0 : {// Start of the game
+      menuMain : [// Main menu
+        {// Start of the game
           name : '1. Start',
           context : startGame,
           key : '1'
         },
-        str1 : {// Options menu
+        {// Options menu
           name : '2. Options',
           context : 'menuOptions',
           key : '2'
         },
-        str2 : {// Help menu
+        {// Help menu
           name : '3. Help',
           context : 'menuHelp',
           key : '3'
         },
-        str3 : {// Show credits
+        {// Show credits
           name : '4. Credits',
           context : showCredits,
           key : '4'
         },
-        str4 : {// Exit
+        {// Exit
           name : '5. Exit',
           context : exit,
           key : '5'
         }
-      },
-      menuOptions : {// Options menu
-        str0 : {// Change language
+      ],
+      menuOptions : [// Options menu
+        {// Change language
           name : '1. Change language',
           context : changeProperety,
           addArgs : {
@@ -239,7 +239,7 @@ function stringsExecute() {
           },
           key : '1'
         },
-        str1 : {// Change amount of cash on the start
+        {// Change amount of cash on the start
           name : '2. Change start cash',
           context : changeProperety,
           addArgs : {
@@ -248,7 +248,7 @@ function stringsExecute() {
           },
           key : '2'
         },
-        str2 : {// Change coefficient which is used when player wins
+        {// Change coefficient which is used when player wins
           name : '3. Change win coefficient',
           context : changeProperety,
           addArgs : {
@@ -257,14 +257,14 @@ function stringsExecute() {
           },
           key : '3'
         },
-        str3 : {// Back one level
+        {// Back one level
           name : '4. Back',
           context : exit,
           key : '4'
         }
-      },
-      menuHelp : {// Help menu
-        str0 : {// Show navigation tips
+      ],
+      menuHelp : [// Help menu
+        {// Show navigation tips
           name : '1. Navigation',
           context : listScrolling,
           addArgs : {
@@ -273,7 +273,7 @@ function stringsExecute() {
           },
           key : '1'
         },
-        str1 : {// Show rules tips
+        {// Show rules tips
           name : '2. Rules',
           context : listScrolling,
           addArgs : {
@@ -282,33 +282,33 @@ function stringsExecute() {
           },
           key : '2'
         },
-        str2 : {// Back one level
+        {// Back one level
           name : '3. Back',
           context : exit,
           key : '3'
         }
-      },
-      navigationButtons : {
-        str0 : {
+      ],
+      navigationButtons : [// Buttons used for scrolling
+        {// Next
           name : '1. Next',
           context : function() {
             return(1);
           },
           key : '1'
         },
-        str1 : {
+        {// Previous
           name : '2. Previous',
           context : function() {
             return(-1);
           },
           key : '2'
         },
-        str2 : {
+        {// Back
           name : '3. Back',
           context : exit,
           key : '3'
         }
-      }
+      ]
     },
     'rus' : {
       game : {// Game
@@ -410,35 +410,35 @@ function stringsExecute() {
           name : 'Если у вас \'blackjack\' и открытая карта крупье - туз, вы можете забрать свою ставку в размере 1:1 или продолжить игру.\nКогда вы выигрываете, вы забераете свою ставку в размере 3:2.'
         }
       },
-      menuMain : {// Main menu
-        str0 : {// Start of the game
+      menuMain : [// Main menu
+        {// Start of the game
           name : '1. Начать',
           context : startGame,
           key : '1'
         },
-        str1 : {// Options menu
+        {// Options menu
           name : '2. Опции',
           context : 'menuOptions',
           key : '2'
         },
-        str2 : {// Help menu
+        {// Help menu
           name : '3. Помощь',
           context : 'menuHelp',
           key : '3'
         },
-        str3 : {// Show credits
+        {// Show credits
           name : '4. О программе',
           context : showCredits,
           key : '4'
         },
-        str4 : {// Exit
+        {// Exit
           name : '5. Выход',
           context : exit,
           key : '5'
         }
-      },
-      menuOptions : {// Options menu
-        str0 : {// Change language
+      ],
+      menuOptions : [// Options menu
+        {// Change language
           name : '1. Сменить язык',
           context : changeProperety,
           addArgs : {
@@ -447,7 +447,7 @@ function stringsExecute() {
           },
           key : '1'
         },
-        str1 : {// Change amount of cash on the start
+        {// Change amount of cash on the start
           name : '2. Изменить стартовый капитал',
           context : changeProperety,
           addArgs : {
@@ -456,7 +456,7 @@ function stringsExecute() {
           },
           key : '2'
         },
-        str2 : {// Change coefficient which is used when player wins
+        {// Change coefficient which is used when player wins
           name : '3. Изменить коэффициент выигрыша',
           context : changeProperety,
           addArgs : {
@@ -465,14 +465,14 @@ function stringsExecute() {
           },
           key : '3'
         },
-        str3 : {// Back one level
+        {// Back one level
           name : '4. Назад',
           context : exit,
           key : '4'
         }
-      },
-      menuHelp : {// Help menu
-        str0 : {// Show navigation tips
+      ],
+      menuHelp : [// Help menu
+        {// Show navigation tips
           name : '1. Управление',
           context : listScrolling,
           addArgs : {
@@ -481,7 +481,7 @@ function stringsExecute() {
           },
           key : '1'
         },
-        str1 : {// Show rules tips
+        {// Show rules tips
           name : '2. Правила',
           context : listScrolling,
           addArgs : {
@@ -490,33 +490,33 @@ function stringsExecute() {
           },
           key : '2'
         },
-        str2 : {// Back one level
+        {// Back one level
           name : '3. Назад',
           context : exit,
           key : '3'
         }
-      },
-      navigationButtons : {
-        str0 : {
+      ],
+      navigationButtons : [// Buttons used for scrolling
+        {// Next
           name : '1. Далее',
           context : function() {
             return(1);
           },
           key : '1'
         },
-        str1 : {
+        {// Previous
           name : '2. Предыдущее',
           context : function() {
             return(-1);
           },
           key : '2'
         },
-        str2 : {
+        {// Back
           name : '3. Назад',
           context : exit,
           key : '3'
         }
-      }
+      ]
     }
   };
   return(strings);
@@ -922,7 +922,7 @@ function exit(propereties) {
 };
 
 function menuCreating(propereties, path, mode) {
-  let length = Object.keys(path).length;
+  let length = path.length;
   const list = listCreating(path, length);
   let lableText = lableCreating(list, mode, length);
   const menuCreated = {
@@ -935,10 +935,9 @@ function menuCreating(propereties, path, mode) {
 function listCreating(path, length) {
   const newList = [];
   for (let i = 0; i < length; i++) {
-    let strx = ('str' + i);
     newList[i] = {};
-    for (let listProp in path[strx]) {
-      newList[i][listProp] = path[strx][listProp];
+    for (let listProp in path[i]) {
+      newList[i][listProp] = path[i][listProp];
     };
   };
   return(newList);
