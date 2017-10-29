@@ -500,8 +500,8 @@ function startGame (propereties) {
       getCard(1, deck, cardsOnHands, hands, points);
     };
     yourCardsAre(0, cardsOnHands, hands, points, language);
-    croupierCardsAre(1, true, cardsOnHands, hands, points, language);  
-    bj = blackJack(points, hands);
+    croupierCardsAre(1, true, cardsOnHands, hands, points, language);
+    bj = blackJack(points, hands, language);
     if (bj === 1) {
       cash += bank;
       continue;
@@ -664,9 +664,11 @@ function blackJack (points, hands, language) {
         return (1);
       } else {
         lableText = stringsExecute()[language].game[18];
-        return (alert(lableText));
+        alert(lableText);        
+        return (2);
       };
     } else if (hands[1][1][1] === 10) {
+      lableText = stringsExecute()[language].game[18];
       alert(lableText);
       return (2);
     } else {
