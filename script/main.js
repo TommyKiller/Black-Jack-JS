@@ -101,8 +101,8 @@ function properetiesExecute() {
       }
     }
   };
-  return(properetiesTree);
-};
+  return (properetiesTree);
+}
 
 function treeExecute(language) {
   const tree = {
@@ -171,7 +171,7 @@ function treeExecute(language) {
       0: {// Show navigation tips
         name: stringsExecute()[language].menuHelp[0],
         context: listScrolling,
-          addArgs: {
+        addArgs: {
           block: 'navigationTips',
           parentBlock: 'menuHelp'
         },
@@ -195,14 +195,14 @@ function treeExecute(language) {
     navigationButtons: {
       0: {
         name: stringsExecute()[language].navigationButtons[0],
-        context: function () {
+        context() {
           return (1);
         },
         key: '1'
       },
       1: {
         name: stringsExecute()[language].navigationButtons[1],
-        context: function () {
+        context() {
           return (-1);
         },
         key: '2'
@@ -214,10 +214,10 @@ function treeExecute(language) {
       }
     }
   };
-  return(tree);
-};
+  return (tree);
+}
 
-function stringsExecute () {
+function stringsExecute() {
   const strings = {
     'eng': {
       game: {// Game
@@ -453,13 +453,13 @@ function stringsExecute () {
     }
   };
   return (strings);
-};
+}
 
 // Game engine
 
-function startGame (propereties) {
-  let language = propereties.language;
-  let coef = propereties.coef;
+function startGame(propereties) {
+  const language = propereties.language;
+  const coef = propereties.coef;
   let cash = propereties.cash;
   let lableText;
   let bj;
@@ -476,7 +476,7 @@ function startGame (propereties) {
       lableText = stringsExecute()[language].game[0];
       alert(lableText);
       bet = betting(cash, language);
-    };
+    }
     bank = bet;
     cash -= bet;
     // Initializing of arrays
@@ -485,20 +485,20 @@ function startGame (propereties) {
       cardsOnHands[i] = -1;
       for (let j = 0; j <= 51; j++) {
         hands[i][j] = [];
-      };
-    };
+      }
+    }
     for (let i = 0; i <= 3; i++) {
       deck[i] = [];
       points[i] = 0;
       for (let j = 2; j <= 14; j++) {
         deck[i][j] = 2;
-      };
-    };
+      }
+    }
     // Start
     for (let i = 0; i <= 1; i++) {
       getCard(0, deck, cardsOnHands, hands, points);
       getCard(1, deck, cardsOnHands, hands, points);
-    };
+    }
     yourCardsAre(0, cardsOnHands, hands, points, language);
     croupierCardsAre(1, true, cardsOnHands, hands, points, language);
     bj = blackJack(points, hands, language);
@@ -509,23 +509,23 @@ function startGame (propereties) {
       youWin(points, language);
       cash += (bank * coef);
       continue;
-    };
+    }
     if (points[0] !== 21) {
       while (confirm(stringsExecute()[language].game[1])) {
         getCard(0, deck, cardsOnHands, hands, points);
         yourCardsAre(0, cardsOnHands, hands, points, language);
         if (points[0] >= 21) {
           break;
-        };
+        }
         lableText = stringsExecute()[language].game[2];
         if ((cash > 0) && (confirm(lableText))) {
           yourMoney(cash, language);
           bet = betting(cash, language);
           bank += bet;
           cash -= bet;
-        };
-      };
-    };
+        }
+      }
+    }
     if (checkPoints(points) === 1) {
       lableText = stringsExecute()[language].game[3];
       alert(lableText);
@@ -533,16 +533,16 @@ function startGame (propereties) {
         lableText = stringsExecute()[language].game[4];
         alert(lableText);
         break;
-      };
+      }
       continue;
-    };
+    }
     while (points[1] <= 17) {
       getCard(1, deck, cardsOnHands, hands, points);
-    };
+    }
     croupierCardsAre(1, false, cardsOnHands, hands, points, language);
     if (youWin(points, language)) {
       cash += (bank * coef);
-    };
+    }
     if (youLose(points, language) === 3) {
       cash += bank;
     }
@@ -550,23 +550,23 @@ function startGame (propereties) {
       lableText = stringsExecute()[language].game[4];
       alert(lableText);
       break;
-    };
-  };
+    }
+  }
   lableText = stringsExecute()[language].game[6];
   if (cash > propereties.cash) {
     alert(lableText + (cash - propereties.cash));
   } else {
     alert(lableText + 0);
-  };
-};
+  }
+}
 
-function cardGenerating (player, deck, cardsOnHands, hands, points) {
+function cardGenerating(player, deck, cardsOnHands, hands, points) {
   let cardSuit = getRandomInt(0, 3);
   let cardValue = getRandomInt(2, 14);
   while (deck[cardSuit][cardValue] !== 2) {
     cardSuit = getRandomInt(0, 3);
     cardValue = getRandomInt(2, 14);
-  };
+  }
   deck[cardSuit][cardValue] = player;
   ++cardsOnHands[player];
   hands[player][cardsOnHands[player]][0] = cardSuit;
@@ -574,87 +574,87 @@ function cardGenerating (player, deck, cardsOnHands, hands, points) {
   // Points adding
   if (hands[player][cardsOnHands[player]][1] <= 10) {
     points[player] += hands[player][cardsOnHands[player]][1];
-  };
+  }
   for (let i = 11; i < 14; i++) {
     if (hands[player][cardsOnHands[player]][1] === i) {
       points[player] += 10;
-    };
-  };
+    }
+  }
   if (hands[player][cardsOnHands[player]][1] === 14) {
     ((points[player] + 11) <= 21) ? points[player] += 11 : points[player] += 1;
-  };
-};
+  }
+}
 
-function cardCreating (player, cardsOnHands, hands, language) {
+function cardCreating(player, cardsOnHands, hands, language) {
   let cardSuit;
   let lableText;
-  let cards = [];
+  const cards = [];
   for (let i = 0; i <= cardsOnHands[player]; i++) {
     // Card siut generation
     for (let k = 0; k <= 3; k++) {
       if (hands[player][i][0] === k) {
         cardSuit = stringsExecute()[language].cards[k];
-      };
-    };
+      }
+    }
     // Card value generation
     if (hands[player][i][1] <= 10) {
       lableText = '\n\r' + hands[player][i][1] + stringsExecute()[language].cards[4] + cardSuit;
       cards.push(lableText);
-    };
+    }
     for (let k = 11; k <= 14; k++) {
       if (hands[player][i][1] === k) {
         lableText = stringsExecute()[language].cards[k] + cardSuit;
         cards.push(lableText);
-      };
-    };
-  };
+      }
+    }
+  }
   return (cards);
-};
+}
 
-function checkDeck (deck) {
+function checkDeck(deck) {
   let k = 0;
   for (let i = 0; i <= 3; i++) {
     for (let j = 2; j <= 14; j++) {
       if (deck[i][j] === 2) {
         ++k;
-      };
-    };
-  };
+      }
+    }
+  }
   if (k > 0) {
     return (false);
-  };
+  }
   if (k === 0) {
     return (true);
-  };
-};
+  }
+}
 
-function getCard (player, deck, cardsOnHands, hands, points) {
+function getCard(player, deck, cardsOnHands, hands, points) {
   if (!checkDeck(deck)) {
     cardGenerating(player, deck, cardsOnHands, hands, points);
-  };
-};
+  }
+}
 
-function yourCardsAre (player, cardsOnHands, hands, points, language) {
-  let lableText = stringsExecute()[language].game[10] + cardCreating(player, cardsOnHands, hands, language) + ' (' + points[player] + stringsExecute()[language].game[16];
+function yourCardsAre(player, cardsOnHands, hands, points, language) {
+  const lableText = stringsExecute()[language].game[10] + cardCreating(player, cardsOnHands, hands, language) + ' (' + points[player] + stringsExecute()[language].game[16];
   return (alert(lableText));
-};
+}
 
-function croupierCardsAre (player, hole, cardsOnHands, hands, points, language) {
+function croupierCardsAre(player, hole, cardsOnHands, hands, points, language) {
   let lableText;
   if (hole) {
     lableText = stringsExecute()[language].game[11] + cardCreating(player, cardsOnHands, hands, language).shift();
     return (alert(lableText));
-  };
+  }
   lableText = stringsExecute()[language].game[12] + cardCreating(player, cardsOnHands, hands, language) + ' (' + points[player] + stringsExecute()[language].game[16];
   return (alert(lableText));
-};
+}
 
-function yourMoney (cash, language) {
-  let lableText = stringsExecute()[language].game[13] + cash;
+function yourMoney(cash, language) {
+  const lableText = stringsExecute()[language].game[13] + cash;
   return (alert(lableText));
-};
+}
 
-function blackJack (points, hands, language) {
+function blackJack(points, hands, language) {
   let lableText;
   if (points[0] === 21) {
     alert('Black Jack!');
@@ -664,46 +664,46 @@ function blackJack (points, hands, language) {
         return (1);
       } else {
         lableText = stringsExecute()[language].game[18];
-        alert(lableText);        
+        alert(lableText);
         return (2);
-      };
+      }
     } else if (hands[1][1][1] === 10) {
       lableText = stringsExecute()[language].game[18];
       alert(lableText);
       return (2);
     } else {
       return (3);
-    };
-  };
+    }
+  }
   return (0);
-};
+}
 
-function checkPoints (points) {
+function checkPoints(points) {
   if ((points[0] === 21) && (points[1] !== 21)) {
     return (0);
-  };
+  }
   if (points[0] > 21) {
     return (1);
-  };
+  }
   if (points[1] > 21) {
     return (2);
-  };
+  }
   if (points[0] === points[1]) {
     return (3);
-  };
+  }
   if (points[0] > points[1]) {
     return (4);
-  };
+  }
   if (points[0] < points[1]) {
     return (5);
-  };
-};
+  }
+}
 
-function betting (cash, language) {
+function betting(cash, language) {
   // List of bets creation
   let lableText;
-  let path = properetiesExecute().betsList;
-  let length = Object.keys(path).length;
+  const path = properetiesExecute().betsList;
+  const length = Object.keys(path).length;
   const listBets = listCreating(path, length);
   listBets[listBets.length - 1].context = cash;
   listBets[listBets.length - 1].name += stringsExecute()[language].game[9];
@@ -711,14 +711,14 @@ function betting (cash, language) {
     lableText = stringsExecute()[language].game[7];
     alert(lableText);
     return (cash);
-  };
+  }
   // Lable creation
   let k = -1;
   for (let i = 0; i < listBets.length; i++) {
     if (cash >= listBets[i].context) {
       ++k;
-    };
-  };
+    }
+  }
   lableText = stringsExecute()[language].game[8] + lableCreating(listBets, 1, k);
   lableText += ('\n\r' + listBets[listBets.length - 1].name);
   // Bet selection
@@ -727,81 +727,79 @@ function betting (cash, language) {
     playerChose = prompt(lableText);
     if (playerChose === null) {
       return (0);
-    };
+    }
     for (let i = 0; i < listBets.length; i++) {
       if (cash >= listBets[i].context) {
         if (playerChose === listBets[i].key) {
           return (listBets[i].context);
-        };
-      };
-    };
+        }
+      }
+    }
   } while (true);
-};
+}
 
-function youWin (points, language) {
+function youWin(points, language) {
   let lableText;
   for (let i = 0; i <= 4; i += 2) {
     if (checkPoints(points) === i) {
       lableText = stringsExecute()[language].winLose[0];
       alert(lableText);
       return (1);
-    };
-  };
+    }
+  }
   return (0);
-};
+}
 
-function youLose (points, language) {
+function youLose(points, language) {
   let lableText;
   for (let i = 1; i <= 5; i += 2) {
     if (checkPoints(points) === i) {
       lableText = stringsExecute()[language].winLose[i];
       alert(lableText);
       return (i);
-    };
-  };
-};
+    }
+  }
+}
 
-function getRandomInt (min, max) {
+function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+}
 
 // Program engine
 
-function menuExecution (propereties, list, lableText) {
+function menuExecution(propereties, list, lableText) {
   let playerChose;
   let completFlag = false;
-  let language = propereties.language;
+  const language = propereties.language;
   while (!completFlag) {
     playerChose = prompt(lableText, '');
     for (let i = 0; i < list.length; i++) {
       if (playerChose === list[i].key) {
         completFlag = true;
-        if (list[i].context in treeExecute(propereties.language)) {
+        if (list[i].context in treeExecute(language)) {
           buffer(propereties, list[i].context);
+        } else if ('addArgs' in list[i]) {
+          return (list[i].context(propereties, list[i].addArgs));
         } else {
-          if ('addArgs' in list[i]) {
-            return (list[i].context(propereties, list[i].addArgs));
-          } else {
-            return (list[i].context(propereties));
-          };
-        };
-      };
-    };
-  };
+          return (list[i].context(propereties));
+        }
+      }
+    }
+  }
   propereties.exitFlag = false;
-};
+}
 
-function buffer (propereties, menu) {
-  let path = treeExecute(propereties.language)[menu];
+function buffer(propereties, menu) {
+  const path = treeExecute(propereties.language)[menu];
   const menuCreated = menuCreating(propereties, path, 0);
   menuExecution(propereties, menuCreated.menuList, menuCreated.menuLableText);
-};
+}
 
-function listScrolling (propereties, {block, parentBlock}) {// Need fix!!!!!
+function listScrolling(propereties, { block, parentBlock }) { // Need fix!!!!!
   let path = treeExecute(propereties.language).navigationButtons;
   const menuCreated = menuCreating(propereties, path, 0);
   path = stringsExecute()[propereties.language][block];
-  let lengthTips = Object.keys(path).length;
+  const lengthTips = Object.keys(path).length;
   let lableTextCompiled;
   let i = 0;
   while ((i >= 0) && (i < lengthTips) && (!propereties.exitFlag)) {
@@ -809,24 +807,24 @@ function listScrolling (propereties, {block, parentBlock}) {// Need fix!!!!!
       let pathx = path;
       while (!('name' in pathx[i])) {
         pathx = pathx[i];
-      };
-      let lengthx = Object.keys(pathx).length;
+      }
+      const lengthx = Object.keys(pathx).length;
       const listTips = listCreating(pathx, lengthx);
       lableTextCompiled = (lableCreating(listTips, 1, lengthx) + '\n\n' + menuCreated.menuLableText);
     } else {
       lableTextCompiled = (path[i].name + '\n\n' + menuCreated.menuLableText);
-    };
+    }
     i += menuExecution(propereties, menuCreated.menuList, lableTextCompiled);
-  };
+  }
   propereties.exitFlag = false;
   buffer(propereties, parentBlock);
-};
+}
 
-function changeProperety (propereties, {properety, block}) {
-  let language = propereties.language;
+function changeProperety(propereties, { properety, block }) {
+  const language = propereties.language;
   let lableText = (stringsExecute()[language].game[14] + propereties[properety]);
   alert(lableText);
-  let path = properetiesExecute()[block];
+  const path = properetiesExecute()[block];
   const menuCreated = menuCreating(propereties, path, 1);
   lableText = (stringsExecute()[language].game[15] + menuCreated.menuLableText);
   let playerChose;
@@ -835,44 +833,44 @@ function changeProperety (propereties, {properety, block}) {
     for (let i = 0; i < menuCreated.menuList.length; i++) {
       if (playerChose === menuCreated.menuList[i].key) {
         return (propereties[properety] = menuCreated.menuList[i].context);
-      };
-    };
+      }
+    }
   } while (true);
-};
+}
 
-function showCredits (propereties) {
-  let path = stringsExecute()[propereties.language].creditsStrings;
-  let lableText = menuCreating(propereties, path, 1).menuLableText;
+function showCredits(propereties) {
+  const path = stringsExecute()[propereties.language].creditsStrings;
+  const lableText = menuCreating(propereties, path, 1).menuLableText;
   alert(lableText);
-};
+}
 
-function exit (propereties) {
+function exit(propereties) {
   return (propereties.exitFlag = true);
-};
+}
 
-function menuCreating (propereties, path, mode) {
-  let length = Object.keys(path).length;
+function menuCreating(propereties, path, mode) {
+  const length = Object.keys(path).length;
   const list = listCreating(path, length);
-  let lableText = lableCreating(list, mode, length);
+  const lableText = lableCreating(list, mode, length);
   const menuCreated = {
     menuList: list,
     menuLableText: lableText
   };
   return (menuCreated);
-};
+}
 
-function listCreating (path, length) {
+function listCreating(path, length) {
   const newList = [];
   for (let i = 0; i < length; i++) {
     newList[i] = {};
-    for (let listProp in path[i]) {
+    for (const listProp in path[i]) {
       newList[i][listProp] = path[i][listProp];
-    };
-  };
+    }
+  }
   return (newList);
-};
+}
 
-function lableCreating (list, mode, length) {
+function lableCreating(list, mode, length) {
   let lableText = list[0].name;
   for (let i = 1; i < length; i++) {
     switch (mode) {
@@ -882,10 +880,10 @@ function lableCreating (list, mode, length) {
       case 1:
         lableText += ('\n\r' + list[i].name);
         break;
-    };
-  };
+    }
+  }
   return (lableText);
-};
+}
 
 // Start of the program
 
