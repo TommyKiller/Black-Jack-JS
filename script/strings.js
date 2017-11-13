@@ -1,6 +1,6 @@
 'use strict';
 
-function stringsExecute () {
+function stringsExecute() {
   const strings = {
     'eng': {
       game: {// Game
@@ -236,7 +236,6 @@ function stringsExecute () {
     }
   };
   return (strings);
-};
+}
 
 module.exports = stringsExecute;
-

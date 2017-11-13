@@ -1,6 +1,6 @@
 'use strict';
 
-function properetiesExecute () {
+function properetiesExecute() {
   const properetiesTree = {
     languageList: {
       0: {// 0. English
@@ -102,7 +102,6 @@ function properetiesExecute () {
     }
   };
   return (properetiesTree);
-};
+}
 
 module.exports = properetiesExecute;
-

@@ -437,7 +437,7 @@ function menuExecution (propereties, list, lableText) {
     for (let i = 0; i < list.length; i++) {
       if (playerChose === list[i].key) {
         completFlag = true;
-        if (list[i].context in treeExecute(propereties.language)) {
+        if (list[i].context in treeExecute(language)) {
           buffer(propereties, list[i].context);
         } else {
           if ('addArgs' in list[i]) {
@@ -559,4 +559,3 @@ const propereties = {
 do {
   buffer(propereties, 'menuMain');
 } while (!propereties.exitFlag);
-
